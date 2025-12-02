@@ -1,4 +1,4 @@
-import Solver (solveInput, parseInput)
+import Solver1 (solveInput, parseInput)
 
 main :: IO ()
 main = do
