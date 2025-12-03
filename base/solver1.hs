@@ -1,9 +1,9 @@
-module Solver where
+module Solver1 where
 
-type ParsedInput = -- fill in
+type ParsedInput = [Int] -- fill in
 
 parseInput :: String -> ParsedInput
--- fill in
+parseInput input = [] -- fill in
 
 solveInput :: ParsedInput -> Int
--- fill in
+solveInput input = 0 -- fill in
