@@ -1,4 +1,3 @@
-module Solver2 where
 import Data.Maybe (fromJust)
 import Data.List (elemIndex)
 import Data.Char (digitToInt)

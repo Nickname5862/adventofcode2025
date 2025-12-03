@@ -1,5 +1,3 @@
-module Solver2 where
-
 type ParsedInput = [Int] -- fill in
 
 parseInput :: String -> ParsedInput

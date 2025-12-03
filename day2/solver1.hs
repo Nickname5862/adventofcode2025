@@ -1,5 +1,3 @@
-module Solver1 where
-
 type ParsedInput = [Range]
 
 -- Split on ',', then split on '-'.

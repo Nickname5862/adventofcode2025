@@ -1,4 +1,5 @@
-import Solver (solveInput, parseInput)
+module Main where
+import Solver1 (solveInput, parseInput)
 
 main :: IO ()
 main = do

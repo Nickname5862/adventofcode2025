@@ -1,7 +1,7 @@
 module Utils where
 
 solve :: String -> Int
-solve s = 2
+solve _ = 2
 
 
 

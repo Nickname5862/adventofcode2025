@@ -1,7 +1,10 @@
+module Solver2 where
+import Utils (solve)
+
 type ParsedInput = [Int] -- fill in
 
 parseInput :: String -> ParsedInput
-parseInput input = [] -- fill in
+parseInput _ = [] -- fill in
 
 solveInput :: ParsedInput -> Int
-solveInput input = 0 -- fill in
+solveInput _ = solve "" -- fill in
