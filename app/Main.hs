@@ -1,7 +1,7 @@
 module Main where
-import Solver1 (solveInput, parseInput)
+import Solver (solveInput, parseInput)
 
 main :: IO ()
 main = do
   input <- readFile "input.txt"
-  print $ (solveInput . parseInput) input
+  print $ solveInput $ parseInput input
