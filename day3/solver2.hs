@@ -1,6 +1,7 @@
 import Data.Maybe (fromJust)
 import Data.List (elemIndex)
 import Data.Char (digitToInt)
+import Utils (takeLength)
 
 type ParsedInput = [[Joltage]]
 
@@ -27,14 +28,3 @@ findNthJoltage prevIndex n joltages = (j, i) where
     -- `updatedJoltages` which has some dropped some prefix, we need to add that
     -- length, which is `prevIndex + 1`
     i :: Index = prevIndex + 1 + fromJust (elemIndex j updatedJoltages)
-
---------------------------------------------------
-
--- FIXME: in Utils
--- Such that you can do e.g. `dropLength (-1)` to drop everything until the last
--- element or the usual `dropLength (const 1)` to simply drop 1 element.
-dropLength :: (Int -> Int) -> [a] -> [a]
-dropLength f as = drop (f $ length as) as
-
-takeLength :: (Int -> Int) -> [a] -> [a]
-takeLength f as = take (f $ length as) as

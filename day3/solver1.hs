@@ -1,6 +1,7 @@
 import Data.Maybe (fromJust)
 import Data.List (elemIndex)
 import Data.Char (digitToInt)
+import Utils (takeLength)
 
 type ParsedInput = [[Joltage]]
 
@@ -22,14 +23,3 @@ solveBank joltages = jolts where
     indexOfFirstJoltage :: Int = fromJust $ elemIndex firstJoltage joltages
     secondJoltage :: Joltage = maximum $ drop (indexOfFirstJoltage + 1) joltages
     jolts :: Jolts = read $ show firstJoltage ++ show secondJoltage
-
---------------------------------------------------
-
--- FIXME: in Utils
--- Such that you can do e.g. `dropLength (-1)` to drop everything until the last
--- element or the usual `dropLength (const 1)` to simply drop 1 element.
-dropLength :: (Int -> Int) -> [a] -> [a]
-dropLength f as = drop (f $ length as) as
-
-takeLength :: (Int -> Int) -> [a] -> [a]
-takeLength f as = take (f $ length as) as
