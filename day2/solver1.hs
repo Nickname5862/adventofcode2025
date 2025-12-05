@@ -1,3 +1,4 @@
+module Solver where
 type ParsedInput = [Range]
 
 -- Split on ',', then split on '-'.

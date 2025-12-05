@@ -1,3 +1,4 @@
+module Solver where
 import Debug.Trace (trace)
 
 type ParsedInput = [(Direction, Distance)]

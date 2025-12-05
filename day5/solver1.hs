@@ -1,3 +1,4 @@
+module Solver where
 import Utils (splitOn)
 
 type Range = (Int, Int)

@@ -1,3 +1,4 @@
+module Solver where
 type ParsedInput = [(Direction, Int)]
 
 parseInput :: String -> ParsedInput

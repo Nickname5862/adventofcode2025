@@ -1,3 +1,4 @@
+module Solver where
 import Data.Maybe (isJust)
 import Data.Map (Map, lookup, keys, filterWithKey)
 import Prelude hiding (lookup)
