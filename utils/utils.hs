@@ -69,6 +69,12 @@ adjacent8 = [(0,1), (1,1), (1,0), (1,-1), (0,-1), (-1,-1), (-1,0), (-1,1)]
 adjacent4 :: [Coordinate]
 adjacent4 = [(0,1), (1,0), (0,-1), (-1,0)]
 
+-- replace an element `a` at index `i` in the list `as`. Not trivial in Haskell...
+-- help from https://stackoverflow.com/questions/5852722/replace-individual-list-elements-in-haskell
+-- replaceAtIndex :: Int -> a -> [a] -> [a]
+-- replaceAtIndex i a as = let (x,_:ys) = splitAt i as in x ++ a : ys
+
+
 {--
 
 Useful functions:
