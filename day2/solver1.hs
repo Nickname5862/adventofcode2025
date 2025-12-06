@@ -1,3 +1,4 @@
+{-# LANGUAGE ScopedTypeVariables #-}
 module Solver where
 type ParsedInput = [Range]
 
