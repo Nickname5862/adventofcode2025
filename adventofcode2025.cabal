@@ -71,7 +71,8 @@ executable adventofcode2025
 
     -- Other library packages from which modules are imported.
     build-depends:    base ^>=4.17.2.1,
-                      containers
+                      containers,
+                      split
 
     -- Directories containing source files.
     hs-source-dirs:   app, utils, currentDay
