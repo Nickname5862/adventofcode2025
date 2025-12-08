@@ -25,29 +25,32 @@ takeLength n as = take (n + length as) as
 
 ------------------------------------------------
 
+type CMap a = Map Coordinate a
 
 -- maps a two-dimensional input in the form of "AAA\nBBB" to a Map
 -- where a coordinate like (1,0) would map to a char like 'A'
-toCoordinateMap :: String -> Map Coordinate Char
+toCoordinateMap :: String -> CMap Char
 toCoordinateMap = fromList . concat . zipWith f [0..] . lines where
     f y = zipWith (\x v -> ((x,y), v)) [0..]
 
-toCoordinateMapExcluding :: [Char] -> String -> Map Coordinate Char
+toCoordinateMapExcluding :: [Char] -> String -> CMap Char
 toCoordinateMapExcluding exclude = Data.Map.filter (not . flip elem exclude) . toCoordinateMap
 
-showCoordinateMap :: Map Coordinate Char -> String
+-- Takes the first character of the string obtained by `show a`
+showCoordinateMap :: Show a => CMap a -> String
 showCoordinateMap wh = intercalate "\n" groups where
-    l :: [(Coordinate, Char)] = toList wh
+    l :: [(Coordinate, Char)] = map (\(a, b) -> (a, head $ show b)) $ toList wh
     groups :: [String] = transpose $ map (map snd) $ groupBy (\(coord1,_) (coord2,_) -> fst coord1 == fst coord2) l
 
-showCoordinateMapWithWalker :: (Coordinate, Char) -> Map Coordinate Char -> String
+-- Takes the first character of the string obtained by `show a`
+showCoordinateMapWithWalker :: Show a => (Coordinate, a) -> CMap a -> String
 showCoordinateMapWithWalker (coord, c) wh = intercalate "\n" groups where
-    l :: [(Coordinate, Char)] = toList (insert coord c wh)
+    l :: [(Coordinate, Char)] = map (\(a, b) -> (a, head $ show b)) $ toList (insert coord c wh)
     groups :: [String] = transpose $ map (map snd) $ groupBy (\(coord1,_) (coord2,_) -> fst coord1 == fst coord2) l
 
 -- find an element in a two dimensional grid (assume there is only 1)
 -- I assume you already used `toCoordinateMap` to make a Map
-coordinateOfChar :: Map Coordinate Char -> Char -> Maybe Coordinate
+coordinateOfChar :: Eq a => CMap a -> a -> Maybe Coordinate
 coordinateOfChar m c = find (\key -> c `elem` lookup key m) (keys m)
 
 type Coordinate = (Int, Int)
@@ -62,12 +65,19 @@ instance Num Coordinate where
   fromInteger int = (fromInteger int, fromInteger int)
   negate (x1, x2) = (negate x1, negate x2)
 
-
 adjacent8 :: [Coordinate]
 adjacent8 = [(0,1), (1,1), (1,0), (1,-1), (0,-1), (-1,-1), (-1,0), (-1,1)]
 
 adjacent4 :: [Coordinate]
 adjacent4 = [(0,1), (1,0), (0,-1), (-1,0)]
+
+data Direction = DDown | DLeft | DUp | DRight
+
+move :: Direction -> Coordinate -> Coordinate
+move DDown  = (+ (0,1)) -- might seem counter-intuitive, to have Down do +, but here, the map runs from top to bottom
+move DRight = (+ (1,0))
+move DUp    = \c -> c - (0,1) -- same for this
+move DLeft  = \c -> c - (1,0)
 
 -- replace an element `a` at index `i` in the list `as`. Not trivial in Haskell...
 -- help from https://stackoverflow.com/questions/5852722/replace-individual-list-elements-in-haskell
